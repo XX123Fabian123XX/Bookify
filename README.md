@@ -3,7 +3,7 @@
 **VERSION 1.0.0**
 
 The bookify app consists of a backend that stores book data and allows for authorization and authentication
-The frontend has a landing page where the app is introduced an all of the features are presented. In addition the user can manage the book data on a seperate book
+The frontend has a landing page where the app is introduced and all of the features are presented. In addition the user can manage the book data on a seperate page.
 
 # License & copyright
 © Fabian Winkelmann 2021
