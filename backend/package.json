@@ -4,7 +4,8 @@
   "description": "Backend for the bookify app",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "start": "nodemon ./src/frameworksDrivers/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,10 @@
   },
   "dependencies": {
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.12"
+    "@types/node": "^16.11.12",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.1.1",
+    "nodemon": "^2.0.15"
   }
 }
