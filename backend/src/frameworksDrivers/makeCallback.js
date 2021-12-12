@@ -1,5 +1,4 @@
 // basic callback function
-
 const makeCallback = (callback) => {
     return async (req,res,next) => {
         try {
