@@ -1,6 +1,9 @@
 const {makeBook} = require("./index")
 
 describe("book testing", () => {
+    test("Book needs valid id", () => {
+        return makeBook({id:"test"}).catch(e => expect(e.message).toBe("Please provide a valid id"))
+    })
     test("Book needs a title", () => {
         return makeBook().catch(e => expect(e.message).toBe("A book needs a title"))
     })

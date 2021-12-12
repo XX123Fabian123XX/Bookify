@@ -1,6 +1,9 @@
+
+
 // business logic for the books
-exports.buildMakeBook = function(dateValid) {
+exports.buildMakeBook = function(dateValid, ID) {
     return async function({
+        id=ID.makeId(),
         title,
         author,
         datePublished,
@@ -12,6 +15,8 @@ exports.buildMakeBook = function(dateValid) {
         userReference,
         createdAt = new Date()
     } = {}) {
+        if (!ID.isId(id)) throw new Error("Please provide a valid id")
+
         if (!title) throw new Error("A book needs a title")
         
         if (!author) throw new Error("A book needs an author")
