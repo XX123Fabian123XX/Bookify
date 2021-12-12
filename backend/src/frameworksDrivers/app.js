@@ -11,7 +11,7 @@ const app = express();
 const apiPrefix = process.env.APIPREFIX
 //currently not working
 //app.use(`${apiPrefix}/users`, userRouter)
-//app.use(`${apiPrefix}/`, bookRouter)
+//app.use(`${apiPrefix}/books`, bookRouter)
 
 module.exports = app;
 
