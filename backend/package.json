@@ -1,0 +1,26 @@
+{
+  "name": "bookify_backend",
+  "version": "1.0.0",
+  "description": "Backend for the bookify app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XX123Fabian123XX/Bookify.git"
+  },
+  "author": "Fabian Winkelmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XX123Fabian123XX/Bookify/issues"
+  },
+  "homepage": "https://github.com/XX123Fabian123XX/Bookify#readme",
+  "devDependencies": {
+    "jest": "^27.4.4"
+  },
+  "dependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12"
+  }
+}
