@@ -4,7 +4,7 @@ exports.buildCreateBook = function(dbConnection) {
     return async function(bookInformation) {
         const book = await makeBook(...bookInformation)
 
-        dbConnection.createBook({
+        await dbConnection.createBook({
             title: book.getTitle(),
             author: book.getAuthor(),
             datePublished: book.getDatePublished(),
