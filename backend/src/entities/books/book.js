@@ -30,6 +30,7 @@ exports.buildMakeBook = function(dateValid, ID) {
         if (!userReference) throw new Error("The book needs to have a user reference")
 
         return Object.freeze({
+            getId:() => id,
             getTitle:() => title,
             getAuthor:() => author,
             getDatePublished:() => datePublished,

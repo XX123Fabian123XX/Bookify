@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "start": "nodemon ./src/frameworksDrivers/server.js"
+    "start": "nodemon ./src/frameworksDrivers/server.js",
+    "manuellTest":"nodemon ./src/adapters/data-access/books/test.js"
   },
   "repository": {
     "type": "git",
