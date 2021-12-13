@@ -1,4 +1,4 @@
-module.exports = getBookInformation = (book) => {
+const getBookInformation = (book) => {
     return {
         id:book.getId(),
         title:book.getTitle(),
@@ -13,3 +13,5 @@ module.exports = getBookInformation = (book) => {
         createdAt: book.getCreatedAt()
     }
 }
+
+module.exports = getBookInformation;

@@ -2,7 +2,6 @@ const faker = require("faker");
 const {makeBook} = require("../../src/entities/books/index");
 
 const makeFakeBook = async function(overrides) {
-    try {
         const book = await makeBook({
             title: faker.lorem.sentence(),
             author:faker.name.firstName() + " " + faker.name.lastName(),
@@ -16,9 +15,6 @@ const makeFakeBook = async function(overrides) {
             ...overrides
         })
         return book;
-    } catch(err) {
-        console.log(err)
-    }
 }
 
 module.exports = makeFakeBook
