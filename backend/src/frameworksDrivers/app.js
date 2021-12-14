@@ -1,18 +1,32 @@
-// frameworks and drivers
+const middleware = require("./makeCallback");
 const express = require("express");
 const dotenv = require("dotenv");
-
 const userRouter = require("../adapters/routes/userRouter")
-const bookRouter = require("../adapters/routes/bookRouter")
+const buildBookRouter = require("../adapters/routes/bookRouter")
 
-dotenv.config();
+const buildApp = (db) => {
 
-const app = express();
-const apiPrefix = process.env.APIPREFIX
-//currently not working
-//app.use(`${apiPrefix}/users`, userRouter)
-//app.use(`${apiPrefix}/books`, bookRouter)
+    // frameworks and drivers
 
-module.exports = app;
+    const bookRouter = buildBookRouter(express.Router(), middleware, db);
 
+    dotenv.config();
+
+    const app = express();
+    const apiPrefix = process.env.APIPREFIX
+
+    //app.use(`${apiPrefix}/users`, userRouter)
+    app.get("/", (req,res) => {res.send("test")});
+    app.use(`${apiPrefix}/books`, bookRouter)
+    app.use(function(err,req,res,next) {
+        res.json({
+            statusCode:"500",
+            message:"global error ahndler",
+            err
+        })
+    })
+    return app;
+}
+
+module.exports = buildApp;
 

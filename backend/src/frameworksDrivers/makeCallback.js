@@ -2,12 +2,17 @@
 const makeCallback = (callback) => {
     return async (req,res,next) => {
         try {
-            await callback(req,res)
+            const response = await callback(req,res)
+            console.log(response)
+            res.json(response)
         } catch(err) {
-            res.json({
-                status:500,
-                message:"An error has occured"
-            })
+            // error object erstellen
+            
+            // error object in next
+            next(err)
+            
         }
     }
 }
+
+module.exports = makeCallback;

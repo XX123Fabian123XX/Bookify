@@ -1,4 +1,4 @@
-const {forgotPassword, loginUser, resetPassword, signupUser, updatePassword, updateUser, deleteUser} = require("../controllers/userController")
+//const {forgotPassword, loginUser, resetPassword, signupUser, updatePassword, updateUser, deleteUser} = require("../controllers/userController")
 
 const buildUserRoute = function(router, middleware) {
     return function() {
