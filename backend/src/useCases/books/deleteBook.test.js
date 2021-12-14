@@ -1,4 +1,3 @@
-const { hasUncaughtExceptionCaptureCallback } = require("process");
 const makeFakeBook = require("../../../__test__/__fixtures__/book")
 const db = require("../../../__test__/__fixtures__/db")
 const makeDbConnection = require("../../adapters/data-access/books/books-db");
@@ -15,7 +14,7 @@ describe("delete book", () => {
         await db.connection.close()
     })
 
-    it("should delete a book", async () => {
+    it("deletes a book", async () => {
         const fakeBook = await makeFakeBook();
         await useCases.createBook(getBookInformation(fakeBook));        
         await useCases.deleteBook(fakeBook.getId());
