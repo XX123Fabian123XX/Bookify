@@ -1,4 +1,4 @@
-exports.makeDbConnection = (mongoose) =>  {
+const makeDbConnection = (mongoose) =>  {
     const bookSchema =  new mongoose.Schema({
         id:{
             type:String,
@@ -75,3 +75,5 @@ exports.makeDbConnection = (mongoose) =>  {
         deleteBook
     }
 }
+
+module.exports = makeDbConnection

@@ -1,6 +1,6 @@
 const db = require("../../../../__test__/__fixtures__/db");
 const makeFakeBook = require("../../../../__test__/__fixtures__/book");
-const {makeDbConnection} = require("./books-db");
+const makeDbConnection = require("./books-db");
 const getBookInformation = require("../../../utils/getBookInformation")
 const databaseFunctions = makeDbConnection(db);
 
