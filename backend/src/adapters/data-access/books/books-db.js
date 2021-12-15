@@ -4,7 +4,6 @@ const makeDbConnection = (mongoose) =>  {
 
     const Book = new bookClass(mongoose);
 
-
     const getAllBooks = async () => {
      return (await Book.find({})).map(el => el.toObject())
     }
@@ -17,7 +16,6 @@ const makeDbConnection = (mongoose) =>  {
     }
 
     const createBook = async(bookInformation) => {
-        console.log(bookInformation)
         return (await new Book(bookInformation).save()).toObject();
     }
 
