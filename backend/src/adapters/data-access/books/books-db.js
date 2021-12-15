@@ -1,50 +1,9 @@
-const makeDbConnection = (mongoose) =>  {
-    const bookSchema =  new mongoose.Schema({
-        id:{
-            type:String,
-            required:true,
-            unique:true
-        },
-        title: {
-            type:String,
-            required:true,
-        },
-        author: {
-            type:String,
-            required:true
-        },
-        datePublished: {
-            type:Date,
-            required:true
-        },
-        linkBookCover: {
-            type:String,
-            unique:true
-        },
-        linkBookBack: {
-            type:String,
-            unique:true
-        },
-        numberPages: {
-            type:Number,
-            required:true
-        },
-        rating: {
-            type:Number
-        },
-        genre: {
-            type:String,
-        },
-        createdAt: {
-            type:Date,
-            default: new Date,
-        },
-        userReference: {
-            type:String,
-        }        
-    })
+const bookClass = require("./bookModel");
 
-    const Book = mongoose.model("Book",bookSchema)
+const makeDbConnection = (mongoose) =>  {
+
+    const Book = new bookClass(mongoose);
+
 
     const getAllBooks = async () => {
      return (await Book.find({})).map(el => el.toObject())
@@ -58,6 +17,7 @@ const makeDbConnection = (mongoose) =>  {
     }
 
     const createBook = async(bookInformation) => {
+        console.log(bookInformation)
         return (await new Book(bookInformation).save()).toObject();
     }
 

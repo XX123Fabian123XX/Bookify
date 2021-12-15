@@ -1,29 +1,19 @@
 const buildUseCases = require("../../../useCases/books/index");
 const dbConnection = require("../../data-access/books/books-db");
 
-const buildCreateBook = async(db) => {
+const buildCreateBook = (db) => {
     const useCases = buildUseCases(dbConnection(db));
 
     return async(req) => {
-        // daten aus dem Body
-        const {title, author, datePublished, numberPages, 
-            rating, genre, userReference} = req.body;
+        //daten aus dem Body
         
-        const newBook = await useCases.createBook({
-            title,
-            author,
-            datePublished,
-            numberPages,
-            rating,
-            genre,
-            userReference
-        })
+        const newBook = await useCases.createBook(req.body)
 
         return {
             status:201,
             message:"success",
             body: {
-                book: newBook
+                data: newBook
             }
         }
     }

@@ -6,10 +6,10 @@ const makeFakeBook = async function(overrides) {
             title: faker.lorem.sentence(),
             author:faker.name.firstName() + " " + faker.name.lastName(),
             datePublished: faker.date.recent(),
-            linkBookCover:faker.lorem.sentence(),
-            linkBookBack:faker.lorem.sentence(),
+            linkBookCover:faker.internet.password(),
+            linkBookBack:faker.internet.password(),
             numberPages: 20,
-            rating: 30,
+            rating: 50,
             genre:faker.music.genre(),
             userReference:faker.random.word(),
             ...overrides

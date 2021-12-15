@@ -1,8 +1,11 @@
 const buildGetAllBooks = require("./getAllBooks");
+const buildCreateBook = require("./createBook")
+
 
 const buildBookController = (db) => {
     return {
-        getAllBooks:buildGetAllBooks(db)
+        getAllBooks:buildGetAllBooks(db),
+        createBook:buildCreateBook(db)
     }
 }
 
