@@ -6,7 +6,7 @@ const makeUpdateBook = (dbConnection) => {
 
         const newBook = await makeBook({...oldBook, ...newBookInformation})
 
-        await dbConnection.updateBook(id, getBookInformation(newBook))
+        return await dbConnection.updateBook(id, getBookInformation(newBook))
     }
 }
 

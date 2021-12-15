@@ -1,7 +1,8 @@
 const buildGetAllBooks = require("./getAllBooks");
 const buildCreateBook = require("./createBook");
 const BuildGetSingleBook = require("./getSingleBook");
-const buildDeleteBook = require("../../../useCases/books/deleteBook");
+const buildDeleteBook = require("./deleteBook");
+const buildUpdateBook = require("./updateBook");
 
 
 const buildBookController = (db) => {
@@ -9,7 +10,8 @@ const buildBookController = (db) => {
         getAllBooks:buildGetAllBooks(db),
         createBook:buildCreateBook(db),
         getSingleBook:BuildGetSingleBook(db),
-        deleteBook: buildDeleteBook(db)
+        deleteBook: buildDeleteBook(db),
+        updateBook: buildUpdateBook(db)
     }
 }
 
