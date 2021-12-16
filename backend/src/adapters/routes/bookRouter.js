@@ -5,10 +5,10 @@ const buildBookRouter = function(router, middleware, db) {
     // get all books
     
     router.get("/", middleware(bookController.getAllBooks))
-    // router.get("/:id", middleware(getSingleBook))
-    // router.post("/", middleware(createBook))
-    // router.patch("/:id", middleware(updateBook))
-    // router.delete("/:id", middleware(deleteBook))
+    router.get("/:id", middleware(bookController.getSingleBook))
+    router.post("/", middleware(bookController.createBook))
+    router.patch("/:id", middleware(bookController.updateBook))
+    router.delete("/:id", middleware(bookController.deleteBook))
 
     return router;
 }

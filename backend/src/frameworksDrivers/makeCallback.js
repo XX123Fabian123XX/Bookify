@@ -7,7 +7,7 @@ const makeCallback = (callback) => {
             res.json(response)
         } catch(err) {
             // error object erstellen
-            
+            console.log(err)
             // error object in next
             next(err)
             

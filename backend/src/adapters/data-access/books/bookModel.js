@@ -23,6 +23,7 @@ class Book {
                 required:true
             },
             datePublished: {
+                // TODO: change to date
                 type:Date,
                 required:true
             },
@@ -48,6 +49,7 @@ class Book {
                 type:Date,
                 default: new Date,
             },
+            // TODO: link to user
             userReference: {
                 type:String,
             }    
