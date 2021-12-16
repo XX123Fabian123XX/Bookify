@@ -5,7 +5,7 @@ const makeFakeBook = async function(overrides) {
         const book = await makeBook({
             title: faker.lorem.sentence(),
             author:faker.name.firstName() + " " + faker.name.lastName(),
-            datePublished: format("mm/dd/yyyy", new Date()),
+            datePublished: format("MM/dd/yyyy", new Date()),
             linkBookCover:faker.internet.password(),
             linkBookBack:faker.internet.password(),
             numberPages: 20,

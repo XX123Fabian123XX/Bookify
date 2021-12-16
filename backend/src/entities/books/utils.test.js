@@ -1,4 +1,5 @@
 const {dateValid} = require("./utils");
+const makeFakeBook = require("../../../__test__/__fixtures__/book");
 const dateformat = require("date-format")
 describe("utils test", () => {
     it("validates a date", () => {
@@ -7,7 +8,8 @@ describe("utils test", () => {
         expect(dateValid("15/02/2019")).toBe(false)
         expect(dateValid("3/2/2021")).toBe(false)
         expect(dateValid("")).toBe(false)
-        expect(dateValid(dateformat("mm/dd/yyyy", new Date()))).toBe(true)
+        expect(dateValid(dateformat("MM/dd/yyyy", new Date()))).toBe(true)
         expect(dateValid("das ist ein test")).toBe(false)
     })
 })
+
