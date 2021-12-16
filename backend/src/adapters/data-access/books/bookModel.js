@@ -17,6 +17,7 @@ class Book {
             title: {
                 type:String,
                 required:true,
+                unique:true
             },
             author: {
                 type:String,

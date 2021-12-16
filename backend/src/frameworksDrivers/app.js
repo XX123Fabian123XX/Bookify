@@ -3,6 +3,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const userRouter = require("../adapters/routes/userRouter")
 const buildBookRouter = require("../adapters/routes/bookRouter")
+const errorController = require("../adapters/controllers/errors/errorController");
+const AppError = require("../adapters/controllers/errors/appError");
 
 const buildApp = (db) => {
 
@@ -21,14 +23,11 @@ const buildApp = (db) => {
     //app.use(`${apiPrefix}/users`, userRouter)
     app.get("/", (req,res) => {res.send("test")});
     app.use(`${apiPrefix}/books`, bookRouter)
-    app.use(function(err,req,res,next) {
-        console.log("an error occured");
-        res.json({
-            statusCode:"500",
-            message:"global error ahndler",
-            err
-        })
+    app.all("*", (req,res,next) => {
+        next(new AppError("Cannot find this route on this server", 404))
     })
+    app.use(errorController)
+
     return app;
 }
 

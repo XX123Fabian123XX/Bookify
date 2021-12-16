@@ -1,3 +1,4 @@
+const AppError = require("../../controllers/errors/appError");
 const bookClass = require("./bookModel");
 
 const makeDbConnection = (mongoose) =>  {
@@ -5,12 +6,12 @@ const makeDbConnection = (mongoose) =>  {
     const Book = new bookClass(mongoose);
 
     const getAllBooks = async () => {
-     return (await Book.find({})).map(el => el.toObject())
+     return (await Book.find({}, {_id:0})).map(el => el.toObject())
     }
     const getSingleBook = async (id) => {
-        const singleBook = (await Book.findOne({id}))
+        const singleBook = (await Book.findOne({id}, {_id:0}))
 
-        if (!singleBook) return null;
+        if (!singleBook) throw new AppError(`No book was found with the id ${id}`, 404);
 
         return singleBook.toObject();
     }
@@ -20,11 +21,13 @@ const makeDbConnection = (mongoose) =>  {
     }
 
     const updateBook = async(id,bookInformation) => {
-        return (await Book.findOneAndUpdate({id}, bookInformation, {new: true})).toObject()
+        return (await Book.findOneAndUpdate({id}, bookInformation, {new: true, fields:{_id:0}})).toObject()
     }
 
-    const deleteBook = async(id) => await Book.deleteOne({id})
-
+    const deleteBook = async(id) => {
+        const res = await Book.deleteOne({id})
+        if (res.deletedCount == 0) throw new AppError(`No book was found with the id ${id}`, 404)    
+    }
     return {
         getAllBooks,
         getSingleBook,
