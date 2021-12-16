@@ -23,8 +23,7 @@ class Book {
                 required:true
             },
             datePublished: {
-                // TODO: change to date
-                type:Date,
+                type:String,
                 required:true
             },
             linkBookCover: {

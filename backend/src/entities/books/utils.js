@@ -1,4 +1,7 @@
 // function to validate a date
-exports.dateValid = () => {
-    return true
+const validateDate = require("validate-date");
+
+exports.dateValid = (date) => {
+    if (!date) return false
+    return validateDate(date, responseType="boolean");
 }

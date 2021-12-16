@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watch",
     "start": "nodemon ./src/frameworksDrivers/server.js",
-    "manuellTest":"nodemon ./src/adapters/data-access/books/test.js"
+    "manuellTest": "nodemon ./src/adapters/data-access/books/test.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,11 @@
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.12",
     "cuid": "^2.1.8",
+    "date-format": "^3.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.1.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "validate-date": "^2.0.0"
   }
 }
