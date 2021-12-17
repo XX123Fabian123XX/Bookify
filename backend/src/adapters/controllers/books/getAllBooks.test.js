@@ -14,7 +14,7 @@ describe("get all books", () => {
 
     
     it("gets all of the books", async () => {
-        const response = await getAllBooks();
+        const response = await getAllBooks({query:{}});
 
         expect(typeof response.statusCode).toBe("number")
         expect(typeof response.message).toBe("string")      

@@ -26,8 +26,13 @@ describe("update book", () => {
 
         expect(updatedBookResponse.status).toBe(202)
         expect(updatedBookResponse.message).toBe("success")
-        console.log(fakeBookInformation)
-        console.log(newFakeBookInformation)
+
+        expect(updatedBookResponse.body.data.id).not.toEqual(newFakeBookInformation.id)
+
+        // delete the ids because they are different
+        delete updatedBookResponse.body.data.id
+        delete newFakeBookInformation.id
+
         expect(updatedBookResponse.body.data).toMatchObject(newFakeBookInformation)
     })
 

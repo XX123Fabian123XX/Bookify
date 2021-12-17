@@ -22,13 +22,11 @@ describe("update book", () => {
 
         const newBookInformation = getBookInformation(await makeFakeBook())
 
-        await useCases.updateBook(bookInformation.id, newBookInformation);
+        const updatedBook = await useCases.updateBook(bookInformation.id, newBookInformation);
 
-        const updatedBook = await useCases.getSingleBook(newBookInformation.id);
-        const previousBook = await useCases.getSingleBook(bookInformation.id);
-
-        expect(updatedBook).toMatchObject(newBookInformation);
-        expect(previousBook).toBe(null);
-
+        expect(updatedBook.id).not.toEqual(newBookInformation.id)
+        delete updatedBook["id"]
+        delete newBookInformation["id"]
+        expect(updatedBook).toMatchObject(newBookInformation)
     })    
 })

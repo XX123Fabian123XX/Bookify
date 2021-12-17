@@ -20,7 +20,7 @@ describe("get all books", () => {
         
         await Promise.all(fakeBookInformation.map(useCases.createBook));
 
-        const allBooks = await useCases.getAllBooks();
+        const allBooks = await useCases.getAllBooks({query:{}});
 
         fakeBookInformation.forEach(bookInformation => {
             const book = allBooks.find(el => el.id === bookInformation.id);

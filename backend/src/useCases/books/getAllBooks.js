@@ -1,5 +1,5 @@
 const buildGetAllBooks = (dbConnection) => {
-    return async () => await dbConnection.getAllBooks()
+    return async (req) => await dbConnection.getAllBooks(req.query)
 } 
 
 module.exports = buildGetAllBooks;

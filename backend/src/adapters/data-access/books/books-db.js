@@ -1,12 +1,15 @@
 const AppError = require("../../controllers/errors/appError");
 const bookClass = require("./bookModel");
+const apiFeatures = require("../apiFeatures");
 
 const makeDbConnection = (mongoose) =>  {
 
     const Book = new bookClass(mongoose);
+    const getAllBooks = async (query) => {
+        const firstQuery = Book.find({});
+        const finalQuery = new apiFeatures(firstQuery, query).filter().sort().paginate().limitFields().query
 
-    const getAllBooks = async () => {
-     return (await Book.find({}, {_id:0})).map(el => el.toObject())
+     return (await finalQuery).map(el => el.toObject())
     }
     const getSingleBook = async (id) => {
         const singleBook = (await Book.findOne({id}, {_id:0}))
@@ -17,11 +20,13 @@ const makeDbConnection = (mongoose) =>  {
     }
 
     const createBook = async(bookInformation) => {
-        return (await new Book(bookInformation).save()).toObject();
+        const res =  (await new Book(bookInformation).save()).toObject();
+        delete res["_id"]
+        return res
     }
 
     const updateBook = async(id,bookInformation) => {
-        return (await Book.findOneAndUpdate({id}, bookInformation, {new: true, fields:{_id:0}})).toObject()
+         return (await Book.findOneAndUpdate({id}, bookInformation, {new: true, fields:{_id:0}})).toObject()
     }
 
     const deleteBook = async(id) => {

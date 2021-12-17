@@ -4,9 +4,9 @@ const dbConnection = require("../../data-access/books/books-db");
 const buildGetAllBooks = (db) => {
     const useCases = buildUseCases(dbConnection(db));
 
-    return async() => {
+    return async(req) => {
         
-        const allBooks = await useCases.getAllBooks();
+        const allBooks = await useCases.getAllBooks(req);
         return {
             statusCode:200,
             message:"success",

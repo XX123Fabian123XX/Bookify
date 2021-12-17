@@ -18,8 +18,9 @@ describe("delete book", () => {
         const fakeBook = await makeFakeBook();
         await useCases.createBook(getBookInformation(fakeBook));        
         await useCases.deleteBook(fakeBook.getId());
-        const searchForBook = await useCases.getSingleBook(fakeBook.getId());
-        expect(searchForBook).toEqual(null);
+        return useCases.getSingleBook(fakeBook.getId()).catch(e => {
+            expect(e.message).toBe(`No book was found with the id ${fakeBook.getId()}`)
+        })
     })
 
 })

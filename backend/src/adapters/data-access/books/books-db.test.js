@@ -16,7 +16,7 @@ describe("book database", () => {
         const bookInformation = books.map(getBookInformation)
         const inserts = await Promise.all(bookInformation.map(databaseFunctions.createBook))
         
-        const found = await databaseFunctions.getAllBooks();
+        const found = await databaseFunctions.getAllBooks({query:{}});
 
         expect.assertions(inserts.length)
 
@@ -28,6 +28,8 @@ describe("book database", () => {
         const bookInformation = getBookInformation(book);
         let insert = await databaseFunctions.createBook(bookInformation)
         let found = await databaseFunctions.getSingleBook(book.getId());
+        delete insert["_id"]
+        console.log(insert)
 
         expect(found).toEqual(insert);
     })
@@ -46,8 +48,6 @@ describe("book database", () => {
         const book = await makeFakeBook();
         await databaseFunctions.createBook(getBookInformation(book));
         await databaseFunctions.deleteBook(book.getId());
-        const searchForBook = await databaseFunctions.getSingleBook(book.getId())
-
-        expect(searchForBook).toEqual(null)
+        return databaseFunctions.getSingleBook(book.getId()).catch(e => expect(e.message).toBe(`No book was found with the id ${book.getId()}`))
     })
  })
