@@ -1,12 +1,18 @@
 // business logic for the users
-exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword) {
+exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword, ID) {
     return  async function({
         name,
         email,
         password,
-        passwordConfirm
+        passwordConfirm,
+        id=ID.makeId()
     
     } = {}, createWithPassword = false) {
+
+        if (!ID.isId(id)) {
+            throw new Error("The id is not valid")
+        }
+
         if (!name) {
             throw new Error("You need a name to create a user")
         }

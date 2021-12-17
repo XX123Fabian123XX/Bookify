@@ -4,7 +4,7 @@ exports.buildSignupUser = function(dbConnection) {
     return async function(userInformation) {
         const user = await makeUser(...userInformation, createWithPassword=true)
         
-        dbConnection.signupUser({
+        return await dbConnection.signupUser({
             name: user.getName(),
             email: user.getEmail(),
             password: user.getPassword(),
