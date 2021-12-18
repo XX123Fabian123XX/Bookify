@@ -13,6 +13,7 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
             throw new Error("The id is not valid")
         }
 
+        // TODO: add more validation to the name
         if (!name) {
             throw new Error("You need a name to create a user")
         }

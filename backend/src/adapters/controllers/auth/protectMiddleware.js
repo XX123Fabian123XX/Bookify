@@ -22,8 +22,11 @@ const buildProtectMiddleware = (mongooseObject) => {
 
         // put the user on the request obj
         req.user = user;
+        
+        console.log("this is the user")
+
         console.log(req.user)
-    
+
         next();
     }
     
