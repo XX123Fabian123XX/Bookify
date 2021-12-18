@@ -1,5 +1,4 @@
-
-
+const BaseError = require("../../utils/baseError")
 // business logic for the books
 exports.buildMakeBook = function(dateValid, ID) {
     return async function({
@@ -15,19 +14,19 @@ exports.buildMakeBook = function(dateValid, ID) {
         userReference,
         createdAt = new Date()
     } = {}) {
-        if (!ID.isId(id)) throw new Error("Please provide a valid id")
+        if (!ID.isId(id)) throw new BaseError("Please provide a valid id")
 
-        if (!title) throw new Error("A book needs a title")
+        if (!title) throw new BaseError("A book needs a title")
         
-        if (!author) throw new Error("A book needs an author")
+        if (!author) throw new BaseError("A book needs an author")
 
-        if (!datePublished) throw new Error("A books needs a publishing date")
+        if (!datePublished) throw new BaseError("A books needs a publishing date")
 
-        if (!dateValid(datePublished)) throw new Error("The date is not valid")
+        if (!dateValid(datePublished)) throw new BaseError("The date is not valid")
 
-        if (!numberPages) throw new Error("A book needs to have a page number")
+        if (!numberPages) throw new BaseError("A book needs to have a page number")
 
-        if (!userReference) throw new Error("The book needs to have a user reference")
+        if (!userReference) throw new BaseError("The book needs to have a user reference")
 
         return Object.freeze({
             getId:() => id,

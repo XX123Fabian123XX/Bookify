@@ -5,8 +5,6 @@ const buildLoginUser = (dbUserConnection) => {
         console.log(userData)
         const currentUser = await dbUserConnection.getSingleUserByEmail(userData.email);
 
-        // TODO: valiadate that the user has provided a password and an email
-
         const passwordIsValid = await validatePassword(currentUser.password, userData.password);
 
         if (!passwordIsValid) throw new Error("The password is invalid")

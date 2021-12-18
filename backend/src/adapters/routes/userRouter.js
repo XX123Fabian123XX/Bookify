@@ -8,7 +8,7 @@ const buildUserRouter = function(router, middleware,mongooseObject) {
         // router.delete("/:id", middleware(deleteUser));
         // router.patch("/:id", middleware(updateUser));
         // router.patch("/password", middleware(updatePassword))
-        // router.patch("/resetPassword", middleware(resetPassword))
+        router.post("/resetPassword", middleware(userController.resetPassword))
         router.patch("/updatePassword", middleware(userController.updateUserPassword))
         router.post("/login", middleware(userController.loginUser))
         router.patch("/updateme", protectMiddleware(mongooseObject), middleware(userController.updateMe) )

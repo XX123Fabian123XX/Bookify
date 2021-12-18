@@ -33,12 +33,22 @@ const makeUserDbConnection = (mongooseObject) => {
     // TODO: refactor the get single user function
 
     const getSingleUserByEmail = async (email) => {
-        console.log(email)
         const singleUser = await User.findOne({email}, {_id:0})
 
         if (!singleUser) throw new AppError(`No user was found with this email ${email}`, 404)
 
         return singleUser.toObject();
+
+    }
+
+    // TODO: REFACTOR
+
+    const getSingleUserByToken = async(token) => {
+        const singleUser = await User.findOne({passwordResetToken:token}, {id_:0});
+
+        if (!singleUser) throw new AppError(`No user was found with this token ${token}`)
+
+        return singleUser.toObject()
 
     }
 
@@ -59,7 +69,8 @@ const makeUserDbConnection = (mongooseObject) => {
         getSingleUser,
         getAllUsers,
         createUser,
-        getSingleUserByEmail
+        getSingleUserByEmail,
+        getSingleUserByToken
     }
 }
 

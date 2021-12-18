@@ -24,10 +24,14 @@ class User {
                 required:true
             },
             // TODO: REMOVE DEFAULT BEHAVIOUR OF GETTING A PASSWORD WHEN GETTING DATA
-            // TODO: ADD VALIDATION SO THAT THE PASSWORD CANNOT BE NULL
             password: {
                 type:String,
-                required:true
+                required:true,
+                validate: {
+                    validator: function(value) {
+                        return value != null
+                    }
+                }
             },
             passwordResetToken: {
                 type:String

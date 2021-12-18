@@ -1,4 +1,5 @@
 const AppError = require("./appError")
+const BaseError = require("../../../utils/baseError")
 // TODO: WHEN THE UESR DOES NOT SEND THE RIGHT DATA IN A POST REQUEST THE STATUS CODE IS STILL 500
 // TODO: HANDLE VALIDATION ERROR
 
@@ -35,8 +36,11 @@ const sendErrorDevelopment = (err, req, res) => {
     })
 }
 
-
 module.exports = (err, req,res,next) => {
+
+    if (err instanceof BaseError) {
+        err = new AppError(err.message, 400);
+    }
 
     err.statusCode = err.statusCode ?? 500;
     err.status = err.status ?? "error"
