@@ -4,9 +4,10 @@ const {getJsonWebToken} = require("../auth/token");
 
 const buildSignupUser = function(db)  {
     const userUseCases = buildUserUseCases(dbConnection(db))
-
     return async(req,res) => {
-        const newUser =  userUseCases.signUpUser(req.body);
+        const newUser = await userUseCases.signupUser(req.body);
+
+        const jsonWebToken = await getJsonWebToken({id:newUser.id})
 
         return {
             status:200,
@@ -14,7 +15,7 @@ const buildSignupUser = function(db)  {
             
             body: {
                 data: newUser,
-                token:getJsonWebToken({id:newUser.id}),
+                token: jsonWebToken
             }
         }
     }

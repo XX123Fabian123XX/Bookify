@@ -1,10 +1,10 @@
 class User {
     constructor(mongooseObject) {
-        if (!User.instance) {
+        if (!User.model) {
             this._createSchema(mongooseObject);
             User.model = mongooseObject.model("User", this.userSchema)
         }
-        return User.instance;
+        return User.model;
     }
 
     _createSchema(mongooseObject) {
@@ -22,16 +22,6 @@ class User {
             password: {
                 type:String,
                 required:true
-            },
-            passwordConfirm: {
-                type:String,
-                required:true,
-                validate: {
-                    validator: function(el) {
-                        return el === this.password
-                    },
-                    message: "Passwords are not the same"
-                }
             },
         })
     }

@@ -1,19 +1,19 @@
 const middleware = require("./makeCallback");
 const express = require("express");
 const dotenv = require("dotenv");
-const userRouter = require("../adapters/routes/userRouter")
+const buildUserRouter = require("../adapters/routes/userRouter")
 const buildBookRouter = require("../adapters/routes/bookRouter")
 const errorController = require("../adapters/controllers/errors/errorController");
 const AppError = require("../adapters/controllers/errors/appError");
-
+dotenv.config();
 
 const buildApp = (db) => {
 
     // frameworks and drivers
 
     const bookRouter = buildBookRouter(express.Router(), middleware, db);
-    const userRouter = buildUserRouter(express.Router(), moddleware, db);
-    dotenv.config();
+    const userRouter = buildUserRouter(express.Router(), middleware, db);
+    
 
     const app = express();
     const apiPrefix = process.env.APIPREFIX

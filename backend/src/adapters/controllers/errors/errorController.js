@@ -1,5 +1,6 @@
 const AppError = require("./appError")
-
+// TODO: WHEN THE UESR DOES NOT SEND THE RIGHT DATA IN A POST REQUEST THE STATUS CODE IS STILL 500
+// TODO: HANDLE VALIDATION ERROR
 
 const handleDuplicateKeyError = (err) => {
     const duplicatedValue = err.message.match(/(?<=\{).*(?=\})/)[0].trim()

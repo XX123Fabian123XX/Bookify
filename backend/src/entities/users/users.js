@@ -66,7 +66,8 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
             getEmail: () => email,
             getCreatedAt:() => createdAt,
             getPassword:() => password,
-            lastLoggedIn:() => lastLoggedIn
+            lastLoggedIn:() => lastLoggedIn,
+            getId: () => id,
         })
     }
 }

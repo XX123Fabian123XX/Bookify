@@ -8,6 +8,8 @@ const makeUserDbConnection = (mongooseObject) => {
     const User = new userModel(mongooseObject);
 
     const createUser = async (userInformation) => {
+        console.log("this is the user information")
+        console.log(userInformation)
         const newUser = await new User(userInformation).save()
         delete newUser["_id"]
         return newUser.toObject()

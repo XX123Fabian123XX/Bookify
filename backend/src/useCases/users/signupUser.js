@@ -1,10 +1,13 @@
 const {makeUser} = require("../../entities/users/index");
 
-exports.buildSignupUser = function(dbConnection) {
+const buildSignupUser = function(dbConnection) {
     return async function(userInformation) {
-        const user = await makeUser(...userInformation, createWithPassword=true)
+        console.log("this is the user informations")
+        console.log(userInformation)
+        const user = await makeUser(userInformation, createWithPassword=true)
         
-        return await dbConnection.signupUser({
+        return await dbConnection.createUser({
+            id:user.getId(),
             name: user.getName(),
             email: user.getEmail(),
             password: user.getPassword(),
@@ -12,3 +15,5 @@ exports.buildSignupUser = function(dbConnection) {
         })
     }
 }
+
+module.exports = buildSignupUser;
