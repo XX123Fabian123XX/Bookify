@@ -49,6 +49,7 @@ const makeUserDbConnection = (mongooseObject) => {
     }
 
     const updateUser = async(id, newUserInformation) => {
+        console.log(`das ist die id ${id}`)
         return (await User.findOneAndUpdate({id}, newUserInformation, {new:true, fields:{_id:0}})).toObject()
     }
 

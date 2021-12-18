@@ -23,6 +23,7 @@ class User {
                 unique:true,
                 required:true
             },
+            // TODO: REMOVE DEFAULT BEHAVIOUR OF GETTING A PASSWORD WHEN GETTING DATA
             password: {
                 type:String,
                 required:true

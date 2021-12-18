@@ -16,7 +16,10 @@ const buildProtectMiddleware = (mongooseObject) => {
     
         // get the user
         const user = await connection.getSingleUser(tokenPayload.id)
-    
+        
+        // TODO: chec if the user has changed his password afte the token has been issued
+        
+
         // put the user on the request obj
         req.user = user;
         console.log(req.user)

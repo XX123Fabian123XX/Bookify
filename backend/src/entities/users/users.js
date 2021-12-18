@@ -30,13 +30,14 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
         }
 
         const createdAt = new Date();
-
+        // TODO: refactor the freezed object, it is somewhat duplicate
         if (!createWithPassword) {
             return Object.freeze(
                 {
                     getName: () => name,
                     getEmail: () => email,
-                    getCreatedAt: () => createdAt,              
+                    getCreatedAt: () => createdAt,      
+                    getId:() => id        
                 })
         }
 
@@ -66,7 +67,6 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
             getEmail: () => email,
             getCreatedAt:() => createdAt,
             getPassword:() => password,
-            lastLoggedIn:() => lastLoggedIn,
             getId: () => id,
         })
     }
