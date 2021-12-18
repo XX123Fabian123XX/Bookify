@@ -29,6 +29,13 @@ class User {
                 type:String,
                 required:true
             },
+            passwordResetToken: {
+                type:String
+            },
+            passwordResetExpires: {
+                type:Number
+            }
+
         })
     }
 }
