@@ -23,11 +23,23 @@ const makeUserDbConnection = (mongooseObject) => {
     }
 
     const getSingleUser = async(id) => {
-        const singleUser = (await User.find({id},{_id:0}))
+        const singleUser = await User.findOne({id},{_id:0})
 
         if (!singleUser) throw new AppError(`No user was found with this id ${id}`, 404)
 
         return singleUser.toObject();
+    }
+
+    // TODO: refactor the get single user function
+
+    const getSingleUserByEmail = async (email) => {
+        console.log(email)
+        const singleUser = await User.findOne({email}, {_id:0})
+
+        if (!singleUser) throw new AppError(`No user was found with this email ${email}`, 404)
+
+        return singleUser.toObject();
+
     }
 
     const deleteUser = async(id) => {
@@ -45,7 +57,8 @@ const makeUserDbConnection = (mongooseObject) => {
         updateUser,
         getSingleUser,
         getAllUsers,
-        createUser
+        createUser,
+        getSingleUserByEmail
     }
 }
 

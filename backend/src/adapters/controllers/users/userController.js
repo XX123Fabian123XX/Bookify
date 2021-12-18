@@ -1,8 +1,10 @@
-const signupUser = require("./signupUser")
+const buildLoginUser = require("./loginUser");
+const buildSignupUser = require("./signupUser")
 
 const buildUserController = (db) => {
     return {
-        signupUser: signupUser(db)
+        signupUser: buildSignupUser(db),
+        loginUser: buildLoginUser(db)
     }
 }
 

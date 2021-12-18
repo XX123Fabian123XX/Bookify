@@ -1,8 +1,10 @@
-const signupUser = require("./signupUser")
+const buildLoginUser = require("./loginUser")
+const buildSignupUser = require("./signupUser")
 
 const buildUseCases = (dbConnection) => {
     return {
-        signupUser:signupUser(dbConnection)
+        signupUser:buildSignupUser(dbConnection),
+        loginUser:buildLoginUser(dbConnection)
     }
 }
 
