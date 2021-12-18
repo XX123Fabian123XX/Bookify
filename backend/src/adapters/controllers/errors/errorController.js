@@ -42,7 +42,9 @@ module.exports = (err, req,res,next) => {
     err.status = err.status ?? "error"
 
     if (process.env.NODE_ENV === "development") sendErrorDevelopment(err, req, res);
-    if (err.message === "Please provide a valid id") err = new AppError(err.message, "400")
+    if (err.message === "Please provide a valid id") err = new AppError(err.message, 400)
+    if (err.message === "jwt expired") err = new AppError("Your token has expired. Please login again", 401)
+    if (err.message === "invalid token") err = new AppError("Your token is invalid. Please login again", 401)
     if (err.code === 11000) err = handleDuplicateKeyError(err);
 
     sendErrorProduction(err, req, res);
