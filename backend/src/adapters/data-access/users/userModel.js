@@ -14,6 +14,10 @@ class User {
                 required:true,
                 unique:true
             },
+            name: {
+                type:String,
+                required:true
+            },
             email: {
                 type:String,
                 unique:true,
