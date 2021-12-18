@@ -1,10 +1,11 @@
-//const {forgotPassword, loginUser, resetPassword, signupUser, updatePassword, updateUser, deleteUser} = require("../controllers/userController")
+const buildUserController = require("../controllers/users/userController");
 
-const buildUserRoute = function(router, middleware) {
+const buildUserRouter = function(router, middleware,mongooseObject) {
     return function() {
-        
+        const userController = buildUserController(mongooseObject)
+
         // router.delete("/:id", middleware(deleteUser));
-        // router.post("/signup", middleware(signupUser));
+        router.post("/signup", middleware(userController.signupUser));
         // router.patch("/:id", middleware(updateUser));
         // router.patch("/password", middleware(updatePassword))
         // router.patch("/resetPassword", middleware(resetPassword))
@@ -14,3 +15,5 @@ const buildUserRoute = function(router, middleware) {
         return router;
     }
 }
+
+module.exports = buildUserRouter;
