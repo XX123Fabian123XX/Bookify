@@ -18,8 +18,10 @@ const buildProtectMiddleware = (mongooseObject) => {
         console.log(tokenPayload)
         const user = await connection.getSingleUser(tokenPayload.id)
         
-        // TODO: chec if the user has changed his password afte the token has been issued
-        
+        // TODO: chec if the user has changed his password after the token has been issued
+        if (user.passwordLastChanged > tokenPayload.iat) {
+            throw new AppError("Please login again. The password has been changed recently", 400)
+        }
 
         // put the user on the request obj
         req.user = user;

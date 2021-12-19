@@ -1,3 +1,4 @@
+
 const getUserInformation = (user) => {
     const userInformation = {
         id:user.getId(),
@@ -6,9 +7,9 @@ const getUserInformation = (user) => {
     }
 
     if (user.getPassword) userInformation.password = user.getPassword();
-       
+    if (user.getPasswordLastChanged) userInformation.passwordLastChanged = user.getPasswordLastChanged()
+
     return userInformation;
-    
 }
 
 module.exports = getUserInformation;

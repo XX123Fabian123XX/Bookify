@@ -38,6 +38,9 @@ class User {
             },
             passwordResetExpires: {
                 type:Number
+            },
+            passwordLastChanged:{
+                type:Number
             }
 
         })

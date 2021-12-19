@@ -7,9 +7,6 @@ const buildUpdatePassword = (dbConnection) => {
         const currentUser = await dbConnection.getSingleUserByEmail(userInformation.email);
 
         // verify current password
-        console.log(currentUser.password)
-        console.log(userInformation.oldPassword)
-
         const isPasswordValid = await verifyPassword(currentUser.password, userInformation.oldPassword);
         
         if (!isPasswordValid) throw new Error("You have entered the wrong password")

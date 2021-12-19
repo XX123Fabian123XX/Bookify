@@ -6,7 +6,8 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
         email,
         password,
         passwordConfirm,
-        id=ID.makeId()
+        id=ID.makeId(),
+        passwordLastChanged,
     
     } = {}, createWithPassword = false) {
 
@@ -62,9 +63,12 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
 
         password = await encryptPassword(password)
 
+        passwordLastChanged = Date.now() - 1000;
+
         returnObject = {
             ...returnObject,
-            getPassword:() => password
+            getPassword:() => password,
+            getPasswordLastChanged:() => passwordLastChanged
         }
 
         return Object.freeze(returnObject)

@@ -4,6 +4,9 @@ const apiFeatures = require("./apiFeatures");
 const buildGlobalHandlerFactory = (Model) => {
 
     const createEntity = async(information) => {
+        console.log("entity")
+        console.log(information)
+        
         const newEntity = (await new Model(information).save()).toObject();
         delete newEntity["_id"];
         return newEntity

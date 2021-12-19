@@ -54,7 +54,22 @@ class Book {
                 type:String,
             }    
         })
+
+        this.bookSchema.pre("save", function(next) {
+            console.log("Object is being saved")
+
+            console.log(this)
+            this.numberPages = 50000;
+            next();
+        })
+
+       this.bookSchema.post("save", function(doc, next) {
+            console.log("this is post middleware")
+            console.log(doc);
+            next()
+        })
+
     }     
 }
 
-module.exports = Book;
+module.exports = Book; 

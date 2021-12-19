@@ -7,7 +7,7 @@ const buildResetPassword = function(dbConnection) {
         console.log("das sind die nutzer informationen  ")
         console.log(userInformation)
         const newUserInformation = getUserInformation(await makeUser(userInformation, createWithPassword=true))
-        return await dbConnection.updateUser(newUserInformation.id, newUserInformation)
+        return await dbConnection.resetPassword(newUserInformation.id, newUserInformation.password)
     }
 }
 
