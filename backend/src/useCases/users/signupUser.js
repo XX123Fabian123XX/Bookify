@@ -6,6 +6,9 @@ const buildSignupUser = function(dbConnection) {
         console.log(userInformation)
         const user = await makeUser(userInformation, createWithPassword=true)
         
+        console.log("DAS IST DER NEUE USER")
+        console.log(user)
+
         return await dbConnection.createUser({
             id:user.getId(),
             name: user.getName(),

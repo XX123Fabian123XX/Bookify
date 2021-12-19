@@ -14,7 +14,6 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
             throw new BaseError("The id is not valid")
         }
 
-        // TODO: add more validation to the name
         if (!name) {
             throw new BaseError("You need a name to create a user")
         }
@@ -32,15 +31,16 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
         }
 
         const createdAt = new Date();
-        // TODO: refactor the freezed object, it is somewhat duplicate
+
+        let returnObject = {
+            getName: () => name,
+            getEmail: () => email,
+            getCreatedAt: () => createdAt,      
+            getId:() => id        
+        }
+
         if (!createWithPassword) {
-            return Object.freeze(
-                {
-                    getName: () => name,
-                    getEmail: () => email,
-                    getCreatedAt: () => createdAt,      
-                    getId:() => id        
-                })
+            return Object.freeze(returnObject)
         }
 
 
@@ -62,12 +62,11 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
 
         password = await encryptPassword(password)
 
-        return Object.freeze({
-            getName:() => name,
-            getEmail: () => email,
-            getCreatedAt:() => createdAt,
-            getPassword:() => password,
-            getId: () => id,
-        })
+        returnObject = {
+            ...returnObject,
+            getPassword:() => password
+        }
+
+        return Object.freeze(returnObject)
     }
 }

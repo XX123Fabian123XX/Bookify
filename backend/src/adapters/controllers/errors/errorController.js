@@ -1,6 +1,5 @@
 const AppError = require("./appError")
 const BaseError = require("../../../utils/baseError")
-// TODO: WHEN THE UESR DOES NOT SEND THE RIGHT DATA IN A POST REQUEST THE STATUS CODE IS STILL 500
 // TODO: HANDLE VALIDATION ERROR
 
 const handleDuplicateKeyError = (err) => {
@@ -44,12 +43,13 @@ module.exports = (err, req,res,next) => {
 
     err.statusCode = err.statusCode ?? 500;
     err.status = err.status ?? "error"
-
-    if (process.env.NODE_ENV === "development") sendErrorDevelopment(err, req, res);
+    
     if (err.message === "Please provide a valid id") err = new AppError(err.message, 400)
     if (err.message === "jwt expired") err = new AppError("Your token has expired. Please login again", 401)
-    if (err.message === "invalid token") err = new AppError("Your token is invalid. Please login again", 401)
+    if (err.name === "JsonWebTokenError") err = new AppError("Your token is invalid. Please login again", 401)
     if (err.code === 11000) err = handleDuplicateKeyError(err);
+
+    if (process.env.NODE_ENV === "development") sendErrorDevelopment(err, req, res);
 
     sendErrorProduction(err, req, res);
 }

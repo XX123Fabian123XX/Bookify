@@ -15,6 +15,7 @@ const buildProtectMiddleware = (mongooseObject) => {
         const tokenPayload = await verifyToken(bearerToken);
     
         // get the user
+        console.log(tokenPayload)
         const user = await connection.getSingleUser(tokenPayload.id)
         
         // TODO: chec if the user has changed his password afte the token has been issued

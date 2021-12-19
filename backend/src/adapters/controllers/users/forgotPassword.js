@@ -14,6 +14,7 @@ const buildForgotPassword = (mongooseObject) => {
         const user = await userDB.getSingleUserByEmail(email);
 
         // generate a random token
+        // TODO: THE TOKEN IS NOT RANDOM
         const randomToken = crypto.createHash("sha256").digest("base64")
 
         // set the random taken on the user

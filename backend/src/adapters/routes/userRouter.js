@@ -11,7 +11,7 @@ const buildUserRouter = function(router, middleware,mongooseObject) {
         router.post("/resetPassword", middleware(userController.resetPassword))
         router.patch("/updatePassword", middleware(userController.updateUserPassword))
         router.post("/login", middleware(userController.loginUser))
-        router.patch("/updateme", protectMiddleware(mongooseObject), middleware(userController.updateMe) )
+        router.patch("/updateme", middleware(protectMiddleware(mongooseObject), false), middleware(userController.updateMe) )
         router.post("/forgotPassword", middleware(userController.forgotPassword))
 
         return router;
