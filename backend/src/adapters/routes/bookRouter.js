@@ -16,7 +16,7 @@ const buildBookRouter = function(router, middleware, mongoose) {
     router.post("/", uploadBookImages, middleware(bookController.createBook))
 
     // the user that has created the books is only allowed to patch and update them
-    router.patch("/:id", middleware(bookController.updateBook))
+    router.patch("/:id", uploadBookImages, middleware(bookController.updateBook))
     router.delete("/:id", middleware(bookController.deleteBook))
 
     return router;
