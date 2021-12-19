@@ -6,9 +6,10 @@ const buildGlobalHandlerFactory = (Model) => {
     const createEntity = async(information) => {
         console.log("entity")
         console.log(information)
+
+        if (information.id) information._id = information.id
         
         const newEntity = (await new Model(information).save()).toObject();
-        delete newEntity["_id"];
         return newEntity
     }
 
@@ -20,7 +21,7 @@ const buildGlobalHandlerFactory = (Model) => {
     }
 
     const getSingleEntity = async(query, errorMessageNotFound) => {
-        const singleEntity = await Model.findOne(query, {_id:0}); 
+        const singleEntity = await Model.findOne(query); 
 
         if (!singleEntity) throw new AppError(errorMessageNotFound, 404)
 
@@ -28,13 +29,14 @@ const buildGlobalHandlerFactory = (Model) => {
     }
 
     const deleteEntity = async(id) => {
-        const res = await Model.deleteOne({id})
+        const res = await Model.deleteOne({_id:id})
 
-        if (res.deletedCount === 0) throw new AppError(`Object with ${id} was not found`)
+        if (res.deletedCount === 0) throw new AppError(`Object with id ${id} was not found`)
     }
 
     const updateEntity = async(id, newInformation) => {
-        return (await Model.findOneAndUpdate({id}, newInformation, {new:true, fields:{_id:0}})).toObject()
+        newInformation._id = id;
+        return (await Model.findOneAndUpdate({_id:id}, newInformation, {new:true})).toObject()
     }
 
     return {

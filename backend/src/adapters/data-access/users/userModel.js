@@ -9,11 +9,6 @@ class User {
 
     _createSchema(mongooseObject) {
         this.userSchema = new mongooseObject.Schema({
-            id:{
-                type:String,
-                required:true,
-                unique:true
-            },
             name: {
                 type:String,
                 required:true

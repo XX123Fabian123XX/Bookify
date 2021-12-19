@@ -6,7 +6,15 @@ const buildCreateBook = (db) => {
 
     return async(req) => {
         //daten aus dem Body
-        
+        const userReference = req.user._id
+
+        req.body.userReference = userReference
+
+        req.body.id = db.Types.ObjectId()
+
+        req.body.linkBookCoverImage = req.files.bookCoverImage[0].filename
+        req.body.linkBookBackImage = req.files.bookBackImage[0].filename 
+
         const newBook = await useCases.createBook(req.body)
 
         return {

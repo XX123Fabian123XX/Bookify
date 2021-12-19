@@ -6,8 +6,8 @@ const getBookInformation = (book) => {
         datePublished:book.getDatePublished(),
         numberPages:book.getNumberPages(),
         userReference:book.getUserReference(),
-        linkBookCover:book.getLinkBookCover(),
-        linkBookBack:book.getLinkBookBack(),
+        linkBookCoverImage:book.getLinkBookCoverImage(),
+        linkBookBackImage:book.getLinkBookBackImage(),
         rating:book.getRating(),
         genre: book.getGenre(),
         createdAt: book.getCreatedAt()

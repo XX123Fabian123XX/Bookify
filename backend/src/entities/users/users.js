@@ -11,10 +11,6 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
     
     } = {}, createWithPassword = false) {
 
-        if (!ID.isId(id)) {
-            throw new BaseError("The id is not valid")
-        }
-
         if (!name) {
             throw new BaseError("You need a name to create a user")
         }

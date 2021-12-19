@@ -5,6 +5,9 @@ const {getJsonWebToken} = require("../auth/token");
 const buildSignupUser = function(db)  {
     const userUseCases = buildUserUseCases(dbConnection(db))
     return async(req,res) => {
+
+        req.body.id = db.Types.ObjectId()
+
         const newUser = await userUseCases.signupUser(req.body);
 
         const jsonWebToken = await getJsonWebToken({id:newUser.id})

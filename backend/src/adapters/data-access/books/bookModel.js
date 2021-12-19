@@ -9,11 +9,6 @@ class Book {
 
     _createSchema(mongooseObject) {
         this.bookSchema = new mongooseObject.Schema({
-            id:{
-                type:String,
-                required:true,
-                unique:true
-            },
             title: {
                 type:String,
                 required:true,
@@ -27,13 +22,14 @@ class Book {
                 type:String,
                 required:true
             },
-            linkBookCover: {
+            // TODO: ADD UNIQUE BACK TO THE LINK BOOK COVER IMAGE
+            // AND LINK BOOK BACK IMAGE
+            linkBookCoverImage: {
                 type:String,
-                unique:true
             },
-            linkBookBack: {
+            linkBookBackImage: {
                 type:String,
-                unique:true
+
             },
             numberPages: {
                 type:Number,
@@ -51,24 +47,10 @@ class Book {
             },
             // TODO: link to user
             userReference: {
-                type:String,
+                type:mongooseObject.Schema.Types.ObjectId,
+                ref:"User",
             }    
         })
-
-        this.bookSchema.pre("save", function(next) {
-            console.log("Object is being saved")
-
-            console.log(this)
-            this.numberPages = 50000;
-            next();
-        })
-
-       this.bookSchema.post("save", function(doc, next) {
-            console.log("this is post middleware")
-            console.log(doc);
-            next()
-        })
-
     }     
 }
 

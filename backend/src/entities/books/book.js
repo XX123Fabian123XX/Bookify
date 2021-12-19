@@ -6,16 +6,15 @@ exports.buildMakeBook = function(dateValid, ID) {
         title,
         author,
         datePublished,
-        linkBookCover,
-        linkBookBack,
+        linkBookCoverImage,
+        linkBookBackImage,
         numberPages,
         rating,
         genre,
         userReference,
         createdAt = new Date()
     } = {}) {
-        if (!ID.isId(id)) throw new BaseError("Please provide a valid id")
-
+        
         if (!title) throw new BaseError("A book needs a title")
         
         if (!author) throw new BaseError("A book needs an author")
@@ -35,8 +34,8 @@ exports.buildMakeBook = function(dateValid, ID) {
             getDatePublished:() => datePublished,
             getNumberPages:() => numberPages,
             getUserReference:() => userReference,
-            getLinkBookCover:() => linkBookCover,
-            getLinkBookBack:() => linkBookBack,
+            getLinkBookCoverImage:() => linkBookCoverImage,
+            getLinkBookBackImage:() => linkBookBackImage,
             getRating:() => rating,
             getGenre:() => genre,
             getCreatedAt:() => createdAt

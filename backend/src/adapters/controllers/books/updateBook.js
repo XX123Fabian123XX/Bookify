@@ -6,6 +6,7 @@ const buildUpdateBook = (db) => {
 
     return async(req) => {
         //daten aus dem Body
+        req.body.id = req.params.id
         const updatedBook = await useCases.updateBook(req.params.id, req.body);
 
         return {

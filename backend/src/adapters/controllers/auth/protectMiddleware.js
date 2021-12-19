@@ -7,6 +7,8 @@ const buildProtectMiddleware = (mongooseObject) => {
 
     return async (req,res,next) => {
 
+        if(!req.headers["authorization"]) throw new AppError("Please provide an authentication token", 401)
+
         // read the token from the header
         const bearerToken = req.headers["authorization"].split(" ")[1];
         console.log(bearerToken)

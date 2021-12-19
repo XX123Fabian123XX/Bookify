@@ -1,6 +1,7 @@
 const AppError = require("./appError")
 const BaseError = require("../../../utils/baseError")
 // TODO: HANDLE VALIDATION ERROR
+// TODO: HANDLE CAST ERROR FOR THE _ID FIELD
 
 const handleDuplicateKeyError = (err) => {
     const duplicatedValue = err.message.match(/(?<=\{).*(?=\})/)[0].trim()
@@ -44,7 +45,6 @@ module.exports = (err, req,res,next) => {
     err.statusCode = err.statusCode ?? 500;
     err.status = err.status ?? "error"
     
-    if (err.message === "Please provide a valid id") err = new AppError(err.message, 400)
     if (err.message === "jwt expired") err = new AppError("Your token has expired. Please login again", 401)
     if (err.name === "JsonWebTokenError") err = new AppError("Your token is invalid. Please login again", 401)
     if (err.code === 11000) err = handleDuplicateKeyError(err);

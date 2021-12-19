@@ -7,12 +7,10 @@ class ApiFeatures {
     limitFields() {
         
         if (this.queryString.fields) {
-            this.queryString.fields += ",id,-_id"    
             const fields = this.queryString.fields.split(",").join(" ");
             console.log(fields)
             this.query.select(fields)
         } 
-        this.query.select("-_id")
         return this;
     }
 
