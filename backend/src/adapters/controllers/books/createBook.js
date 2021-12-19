@@ -5,15 +5,14 @@ const buildCreateBook = (db) => {
     const useCases = buildUseCases(dbConnection(db));
 
     return async(req) => {
-        //daten aus dem Body
-        const userReference = req.user._id
-
-        req.body.userReference = userReference
+        req.body.userReference = req.user._id;
 
         req.body.id = db.Types.ObjectId()
 
-        req.body.linkBookCoverImage = req.files.bookCoverImage[0].filename
-        req.body.linkBookBackImage = req.files.bookBackImage[0].filename 
+        // TODO: research nullish operator to improve if statements
+        if (req.files && req.files.bookCoverImage) req.body.linkBookCoverImage = req.files.bookCoverImage[0].filename;
+
+        if (req.files && req.files.bookBackImage) req.body.linkBookBackImage = req.files.bookBackImage[0].filename
 
         const newBook = await useCases.createBook(req.body)
 
