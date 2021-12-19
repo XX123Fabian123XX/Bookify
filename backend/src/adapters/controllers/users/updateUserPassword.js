@@ -5,8 +5,8 @@ const {getJsonWebToken} = require("../auth/token");
 const buildUpdateUserPassword = function(db)  {
     const userUseCases = buildUserUseCases(dbConnection(db))
     return async(req,res) => {
-        console.log(req.body);
-        const updatedUser = await userUseCases.updateUserPassword(req.body);
+
+        const updatedUser = await userUseCases.updateUserPassword(req.user, req.body);
 
         const jsonWebToken = await getJsonWebToken({id:updatedUser.id})
 
