@@ -5,6 +5,9 @@ const buildUserRouter = function(router, middleware,mongooseObject) {
         const userController = buildUserController(mongooseObject)
         
         router.post("/signup", middleware(userController.signupUser));
+        // TODO: ROUTE TO GET ME
+        router.get("/me", middleware(protectMiddleware(mongooseObject), false), middleware(userController.getMe));
+        // TODO: ROUTE TO DELETE ME
         // router.delete("/:id", middleware(deleteUser));
         router.post("/resetPassword", middleware(userController.resetPassword))
         router.patch("/updatePassword", middleware(protectMiddleware(mongooseObject), false), middleware(userController.updateUserPassword))

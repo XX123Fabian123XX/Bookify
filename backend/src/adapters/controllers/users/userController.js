@@ -4,6 +4,7 @@ const buildSignupUser = require("./signupUser");
 const buildUpdateMe = require("./updateMe");
 const buildForgotPassword = require("./forgotPassword");
 const buildResetPassword = require("./resetPassword")
+const buildGetMe = require("./getMe")
 
 const buildUserController = (db) => {
     return {
@@ -12,7 +13,8 @@ const buildUserController = (db) => {
         updateUserPassword:buildUpdatePassword(db),
         updateMe:buildUpdateMe(db),
         forgotPassword:buildForgotPassword(db),
-        resetPassword:buildResetPassword(db)
+        resetPassword:buildResetPassword(db),
+        getMe:buildGetMe()
     }
 }
 
