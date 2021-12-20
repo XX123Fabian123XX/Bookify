@@ -4,7 +4,8 @@ const buildSignupUser = require("./signupUser");
 const buildUpdateMe = require("./updateMe");
 const buildForgotPassword = require("./forgotPassword");
 const buildResetPassword = require("./resetPassword")
-const buildGetMe = require("./getMe")
+const buildGetMe = require("./getMe");
+const buildDeleteMe = require("./deleteMe");
 
 const buildUserController = (db) => {
     return {
@@ -14,7 +15,8 @@ const buildUserController = (db) => {
         updateMe:buildUpdateMe(db),
         forgotPassword:buildForgotPassword(db),
         resetPassword:buildResetPassword(db),
-        getMe:buildGetMe()
+        getMe:buildGetMe(),
+        deleteMe: buildDeleteMe(db)
     }
 }
 
