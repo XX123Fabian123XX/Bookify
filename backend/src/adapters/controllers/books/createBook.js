@@ -9,7 +9,6 @@ const buildCreateBook = (db) => {
 
         req.body.id = db.Types.ObjectId()
 
-        // TODO: research nullish operator to improve if statements
         if (req.files && req.files.bookCoverImage) req.body.linkBookCoverImage = req.files.bookCoverImage[0].filename;
 
         if (req.files && req.files.bookBackImage) req.body.linkBookBackImage = req.files.bookBackImage[0].filename

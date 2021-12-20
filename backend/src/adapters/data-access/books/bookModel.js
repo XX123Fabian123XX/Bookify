@@ -46,7 +46,6 @@ class Book {
                 type:Date,
                 default: new Date,
             },
-            // TODO: link to user
             userReference: {
                 type:mongooseObject.Schema.Types.ObjectId,
                 ref:"User",

@@ -18,8 +18,6 @@ const buildProtectMiddleware = (mongooseObject) => {
         // get the user
         const user = await connection.getSingleUser(tokenPayload._id)
         
-        console.log(`token payload ${JSON.stringify(tokenPayload)}`)
-        console.log(`User ${JSON.stringify(user)}`)
         // check if the password has recently been updated
         if (Math.floor(user.passwordLastChanged / 1000) > tokenPayload.iat) {
             throw new AppError("Please login again. The password has been changed recently", 400)

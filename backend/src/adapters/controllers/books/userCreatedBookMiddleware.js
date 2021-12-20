@@ -6,13 +6,11 @@ const buildUserCreatedBookMiddleware = (mongooseObject) => {
 
     return async (req,res,next) => {
         const book = await dbConnection.getSingleBook(req.params.id);
-
-        if (`${req.user._id}` !== `${book.userReference}`) {
+        if (`${req.user._id}` !== `${book.userReference._id}`) {
             throw new AppError("You have not created this book. Therefore you cannot change it", 403)
         }
         next();    
     }
 }
-
 
 module.exports = buildUserCreatedBookMiddleware;
