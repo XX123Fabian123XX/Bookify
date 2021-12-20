@@ -8,7 +8,6 @@ const buildUpdateBook = (db) => {
         //daten aus dem Body
         req.body.id = req.params.id
        
-        console.log(req.files)
         if (req.files && req.files.bookCoverImage) req.body.linkBookCoverImage = req.files.bookCoverImage[0].filename;
 
         if (req.files && req.files.bookBackImage) req.body.linkBookBackImage = req.files.bookBackImage[0].filename

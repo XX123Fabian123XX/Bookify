@@ -8,7 +8,6 @@ class ApiFeatures {
         
         if (this.queryString.fields) {
             const fields = this.queryString.fields.split(",").join(" ");
-            console.log(fields)
             this.query.select(fields)
         } 
         return this;

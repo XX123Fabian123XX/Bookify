@@ -1,6 +1,7 @@
 const buildBookController = require("../controllers/books/bookController");
 const protectMiddleware = require("../controllers/auth/protectMiddleware");
 const uploadBookImages = require("../utils/multerConfig");
+const buildUserCreatedBookMiddleware = require("../controllers/books/userCreatedBookMiddleware");
 
 const buildBookRouter = function(router, middleware, mongoose) {
     const bookController = buildBookController(mongoose);
@@ -16,8 +17,8 @@ const buildBookRouter = function(router, middleware, mongoose) {
     router.post("/", uploadBookImages, middleware(bookController.createBook))
 
     // the user that has created the books is only allowed to patch and update them
-    router.patch("/:id", uploadBookImages, middleware(bookController.updateBook))
-    router.delete("/:id", middleware(bookController.deleteBook))
+    router.patch("/:id", middleware(buildUserCreatedBookMiddleware(mongoose), false), uploadBookImages, middleware(bookController.updateBook))
+    router.delete("/:id", middleware(buildUserCreatedBookMiddleware(mongoose), false), middleware(bookController.deleteBook))
 
     return router;
 }

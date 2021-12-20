@@ -8,8 +8,6 @@ const buildUpdateUser = (dbConnection) => {
         const newUser = await makeUser({...oldUser, ...userInformation});
 
         const updatedUser = await dbConnection.updateUser(id, getUserInformation(newUser));
-        console.log("this is the updated User")
-        console.log(updatedUser)
         return updatedUser
 
     }

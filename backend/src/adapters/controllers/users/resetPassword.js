@@ -13,7 +13,6 @@ const buildResetPassword = (mongooseObject) => {
         const user = await userDatabaseConnection.getSingleUserByToken(token);
         
         if (new Date().getTime() > user.passwordResetExpires) throw new AppError("The token has expired. Please get a new token", 400);
-        console.log(req.body)        
         // 2) create the new user with new password
         const newUser = await userUseCases.resetPassword({...user, password:req.body.password, passwordConfirm: req.body.passwordConfirm})
         

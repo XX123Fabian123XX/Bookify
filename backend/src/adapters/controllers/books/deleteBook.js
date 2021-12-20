@@ -5,7 +5,6 @@ const buildDeleteBook = (db) => {
     const useCases = buildUseCases(dbConnection(db));
     return async(req) => {
         const id = req.params.id;
-        console.log(`Build delete book ${id}`)
         await useCases.deleteBook(id);
 
         return {

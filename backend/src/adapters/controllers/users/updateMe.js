@@ -5,7 +5,6 @@ const dbConnection = require("../../data-access/users/user-db")
 const buildUpdateMe = function(db)  {
     const userUseCases = buildUserUseCases(dbConnection(db))
     return async(req,res) => {
-        console.log("this is the user")
         const updateInformation = {}
         if (req.body.name) updateInformation.name = req.body.name;
         if (req.body.email) updateInformation.email = req.body.email;

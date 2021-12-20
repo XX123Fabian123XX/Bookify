@@ -2,7 +2,6 @@ const validatePassword = require("./validateUserPassword")
 
 const buildLoginUser = (dbUserConnection) => {
     return async (userData) => {
-        console.log(userData)
         const currentUser = await dbUserConnection.getSingleUserByEmail(userData.email);
 
         const passwordIsValid = await validatePassword(currentUser.password, userData.password);

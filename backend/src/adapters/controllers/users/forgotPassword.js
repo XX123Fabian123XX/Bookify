@@ -17,9 +17,8 @@ const buildForgotPassword = (mongooseObject) => {
 
         // set the random taken on the user
         const passwordResetExpires = new Date().getTime() + parseInt(process.env.PASSWORD_RESET_EXPIRES_IN_MILLISECONDS)
-        console.log(new Date(passwordResetExpires))
+
         const updatedUser= await userDB.updateUser(user.id, {passwordResetToken:randomToken, passwordResetExpires })
-        console.log(updatedUser)
         // send the token via email
         // creating new email object
         

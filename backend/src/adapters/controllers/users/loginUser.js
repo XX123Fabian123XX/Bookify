@@ -5,10 +5,9 @@ const {getJsonWebToken} = require("../auth/token")
 const buildLoginUser = function(db)  {
     const userUseCases = buildUserUseCases(dbConnection(db))
     return async(req,res) => {
-        console.log("currently in controller")
         const currentUser = await userUseCases.loginUser(req.body);
 
-        const jsonWebToken = await getJsonWebToken({id:currentUser.id})
+        const jsonWebToken = await getJsonWebToken({_id:currentUser._id})
 
         return {
             status:200,

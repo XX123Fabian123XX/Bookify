@@ -10,7 +10,7 @@ const buildSignupUser = function(db)  {
 
         const newUser = await userUseCases.signupUser(req.body);
 
-        const jsonWebToken = await getJsonWebToken({id:newUser.id})
+        const jsonWebToken = await getJsonWebToken({_id:newUser._id})
 
         return {
             status:200,

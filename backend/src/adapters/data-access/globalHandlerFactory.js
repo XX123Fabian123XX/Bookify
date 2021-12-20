@@ -4,8 +4,6 @@ const apiFeatures = require("./apiFeatures");
 const buildGlobalHandlerFactory = (Model) => {
 
     const createEntity = async(information) => {
-        console.log("entity")
-        console.log(information)
 
         if (information.id) information._id = information.id
         
@@ -13,15 +11,17 @@ const buildGlobalHandlerFactory = (Model) => {
         return newEntity
     }
 
-    const getAllEntities = async(query) => {
+    const getAllEntities = async(query, fieldsToPopulate) => {
+        console.log(query)
+        console.log(fieldsToPopulate)
         const firstQuery = Model.find({})
         const finalQuery = new apiFeatures(firstQuery, query).filter().sort().paginate().limitFields().query;
 
-        return (await finalQuery).map(el => el.toObject())
+        return (await finalQuery.populate(fieldsToPopulate)).map(el => el.toObject())
     }
 
-    const getSingleEntity = async(query, errorMessageNotFound) => {
-        const singleEntity = await Model.findOne(query); 
+    const getSingleEntity = async(query, errorMessageNotFound, fieldsToPopulate) => {
+        const singleEntity = await Model.findOne(query).populate(fieldsToPopulate); 
 
         if (!singleEntity) throw new AppError(errorMessageNotFound, 404)
 

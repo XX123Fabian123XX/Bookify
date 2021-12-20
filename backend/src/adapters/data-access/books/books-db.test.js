@@ -29,7 +29,6 @@ describe("book database", () => {
         let insert = await databaseFunctions.createBook(bookInformation)
         let found = await databaseFunctions.getSingleBook(book.getId());
         delete insert["_id"]
-        console.log(insert)
 
         expect(found).toEqual(insert);
     })
