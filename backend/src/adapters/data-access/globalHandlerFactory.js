@@ -21,6 +21,8 @@ const buildGlobalHandlerFactory = (Model) => {
     }
 
     const getSingleEntity = async(query, errorMessageNotFound, fieldsToPopulate) => {
+        console.log(query)
+
         const singleEntity = await Model.findOne(query).populate(fieldsToPopulate); 
 
         if (!singleEntity) throw new AppError(errorMessageNotFound, 404)

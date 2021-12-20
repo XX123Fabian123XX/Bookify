@@ -1,7 +1,23 @@
 const AppError = require("./appError")
 const BaseError = require("../../../utils/baseError")
-// TODO: HANDLE VALIDATION ERROR
-// TODO: HANDLE CAST ERROR FOR THE _ID FIELD
+
+const handleCastError = (err) => {
+    return new AppError(`Invalid data for field ${err.path} with the value ${err.value}`, 400);
+}
+
+const handleValidationError = (err) => {
+   
+    let match = (err.message.match(/:.*:/));
+    const field = match[0].replace(/:/g, "").trim()
+    
+    match = err.message.match(/Cast to \w+/);
+    const datatype = match[0].split(" ").at(-1)
+    
+    match = err.message.match(/value.+?\s/);
+    const value = match[0].split('"')[1]
+
+    return new AppError(`Cast Error for the field ${field} with the value ${value}. Expected datatype ${datatype} `, 400);
+}
 
 const handleDuplicateKeyError = (err) => {
     const duplicatedValue = err.message.match(/(?<=\{).*(?=\})/)[0].trim()
@@ -48,9 +64,10 @@ module.exports = (err, req,res,next) => {
     if (err.message === "jwt expired") err = new AppError("Your token has expired. Please login again", 401)
     if (err.name === "JsonWebTokenError") err = new AppError("Your token is invalid. Please login again", 401)
     if (err.code === 11000) err = handleDuplicateKeyError(err);
+    if (err.name === "ValidationError") err = handleValidationError(err)
+    if (err.name ===  "CastError") err = handleCastError(err)
 
     if (process.env.NODE_ENV === "development") sendErrorDevelopment(err, req, res);
 
     sendErrorProduction(err, req, res);
 }
-

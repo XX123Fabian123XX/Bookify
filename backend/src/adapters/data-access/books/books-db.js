@@ -9,7 +9,7 @@ const makeDbConnection = (mongoose) =>  {
     
     return {
         getAllBooks:async(query) => globalHandlerFactory.getAllEntities(query, "userReference"),
-        getSingleBook: async (id) => await globalHandlerFactory.getSingleEntity({id}, `No book was found with the id ${id}`, "userReference"),
+        getSingleBook: async (id) => await globalHandlerFactory.getSingleEntity({_id:id}, `No book was found with the id ${id}`, "userReference"),
         createBook: globalHandlerFactory.createEntity,
         updateBook:globalHandlerFactory.updateEntity,
         deleteBook: globalHandlerFactory.deleteEntity
