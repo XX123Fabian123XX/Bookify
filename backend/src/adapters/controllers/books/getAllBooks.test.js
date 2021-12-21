@@ -1,11 +1,14 @@
-const buildGetAllBooks = require("./getAllBooks");
+const buildBookController = require("./bookController")
 const db = require("../../../../__test__/__fixtures__/db");
+const buildUserController = require("../users/userController");
 
 describe("get all books", () => {
 
-    let getAllBooks;
+    let bookController
+    let userController
     beforeAll(async () => {
-        getAllBooks = await buildGetAllBooks(db);
+        bookController = buildBookController(db);
+        userController = buildUserController(db);
     })
 
     afterAll(async() => {
@@ -14,10 +17,10 @@ describe("get all books", () => {
 
     
     it("gets all of the books", async () => {
-        const response = await getAllBooks({query:{}});
-
-        expect(typeof response.statusCode).toBe("number")
-        expect(typeof response.message).toBe("string")      
+        const response = await bookController.getAllBooks({query:{}});
+        
+        expect(response.statusCode).toBe(200)
+        expect(response.message).toBe("success")      
         expect(typeof response.body.length).toBe("number"),
         expect(typeof response.body.data).toBe("object")
     })

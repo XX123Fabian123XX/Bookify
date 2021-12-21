@@ -28,13 +28,11 @@ const buildUpdateBook = (db) => {
 
         // if the user simply wants to delete the image
         if (req.body.bookBackImage && req.body.bookBackImage === "delete") {
-            console.log(bookToUpdate.linkBookBackImage)
             if (bookToUpdate.linkBookBackImage) deleteFileFromUploads(bookToUpdate.linkBookBackImage);
             req.body.linkBookBackImage = ""
         }
 
         if (req.body.bookCoverImage && req.body.bookCoverImage === "delete") {
-            console.log(bookToUpdate.linkBookCoverImage)
             if (bookToUpdate.linkBookCoverImage) deleteFileFromUploads(bookToUpdate.linkBookCoverImage);
             req.body.linkBookCoverImage = ""
         }
@@ -42,7 +40,7 @@ const buildUpdateBook = (db) => {
         const updatedBook = await useCases.updateBook(req.params.id, req.body);
 
         return {
-            status:202,
+            status:200,
             message:"success",
             body: {
                 data: updatedBook

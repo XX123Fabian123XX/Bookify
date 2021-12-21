@@ -1,6 +1,9 @@
 const AppError = require("./appError")
 const BaseError = require("../../../utils/baseError")
 
+
+// TODO: IMPROVE CAST ERROR
+
 const handleCastError = (err) => {
     return new AppError(`Invalid data for field ${err.path} with the value ${err.value}`, 400);
 }

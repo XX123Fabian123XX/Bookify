@@ -60,8 +60,8 @@ describe("entities: UserEntity",  () => {
     it("must have an encrypted password", () => {
         return makeFakeUser({
         password:"testT1234:)",
-        passwordConfirm:"testT1234"}, createWithPassword=true).
-        then(e => expect(e.getPassword).not.toEqual("testT1234:"))
+        passwordConfirm:"testT1234:)"}, createWithPassword=true).
+        then(e => expect(e.message).not.toEqual("testT1234:"))
         
     })
 })

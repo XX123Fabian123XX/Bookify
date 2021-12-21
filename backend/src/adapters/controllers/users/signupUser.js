@@ -13,7 +13,7 @@ const buildSignupUser = function(db)  {
         const jsonWebToken = await getJsonWebToken({_id:newUser._id})
 
         return {
-            status:200,
+            status:201,
             message:"success",
             
             body: {

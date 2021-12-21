@@ -5,7 +5,6 @@ const makeCallback = (callback, lastCallback=true) => {
     return async (req,res,next) => {
         try {
             const response = await callback(req,res, next)
-            console.log(response)
             if (lastCallback) res.json(response)
         } catch(err) {
             // error object in next
