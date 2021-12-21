@@ -28,6 +28,7 @@ class Email {
             text:message
         }).then(info => {console.log(info)}).catch(err => {console.log(err)})
     }
+
 }
 
 module.exports = Email

@@ -19,7 +19,7 @@ const fileFilter = (req,file,cb) => {
         cb(null, true)
         return
     }
-    cb(new AppError("Please only submit jpeg or png"), false)
+    cb(new AppError("Please only submit jpeg or png",400), false)
 }
 
 const upload = multer({storage, fileFilter, limits: {fileSize:1024 * 1024*50 }});

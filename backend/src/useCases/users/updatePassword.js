@@ -5,7 +5,7 @@ const getUserInformation = require("../../utils/getUserInformation")
 const buildUpdatePassword = (dbConnection) => {
     return async(user, requestBody) => {
         console.log(user.id);
-        const currentUser = await dbConnection.getSingleUser(user.id);
+        const currentUser = await dbConnection.getSingleUser(user.id, extraFields="+password");
 
 
         // verify current password

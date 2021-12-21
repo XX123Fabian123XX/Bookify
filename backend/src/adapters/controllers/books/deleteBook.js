@@ -7,7 +7,6 @@ const buildDeleteBook = (db) => {
     return async(req) => {
         const id = req.params.id;
 
-        // TODO: DELETE PREVIOUS IMAGES OF  THE BOOK FROM FILESSYSTEM
         const book = await useCases.getSingleBook(id);
 
         if (book.linkBookCoverImage) deleteFileFromUploads(book.linkBookCoverImage);

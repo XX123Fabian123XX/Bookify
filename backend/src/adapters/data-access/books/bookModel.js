@@ -23,7 +23,6 @@ class Book {
                 type:String,
                 required:true
             },
-            // TODO: ADD UNIQUE BACK TO THE LINK BOOK COVER IMAGE
             // AND LINK BOOK BACK IMAGE
             linkBookCoverImage: {
                 type:String,

@@ -22,11 +22,11 @@ const makeUserDbConnection = (mongooseObject) => {
     return {
         deleteUser:globalHandlerFactory.deleteEntity,
         updateUser: globalHandlerFactory.updateEntity,
-        getSingleUser: async(id) => await globalHandlerFactory.getSingleEntity({_id:id}, `No User was found with this id ${id}`),
+        getSingleUser: async(id, extraFields) => await globalHandlerFactory.getSingleEntity({_id:id}, `No User was found with this id ${id}`, null, extraFields),
         getAllUsers:globalHandlerFactory.getAllEntities,
         createUser:globalHandlerFactory.createEntity,
-        getSingleUserByEmail: async(email) => await globalHandlerFactory.getSingleEntity({email}, `No User was found with this email ${email}`),
-        getSingleUserByToken: async(token) => await globalHandlerFactory.getSingleEntity({passwordResetToken: token}, `No User was found with this token ${token}`),
+        getSingleUserByEmail: async(email, extraFields) => await globalHandlerFactory.getSingleEntity({email}, `No User was found with this email ${email}`, null,extraFields),
+        getSingleUserByToken: async(token, extraFields) => await globalHandlerFactory.getSingleEntity({passwordResetToken: token}, `No User was found with this token ${token}`, null, extraFields),
         resetPassword
     }
 }

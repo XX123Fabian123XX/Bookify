@@ -14,9 +14,11 @@ const buildProtectMiddleware = (mongooseObject) => {
     
         // verify the token 
         const tokenPayload = await verifyToken(bearerToken);
-    
+        
+        console.log(`das ist das token ${JSON.stringify(tokenPayload)}`)
+
         // get the user
-        const user = await connection.getSingleUser(tokenPayload._id)
+        const user = await connection.getSingleUser(tokenPayload._id, "+passwordLastChanged")
         
         // check if the password has recently been updated
         if (Math.floor(user.passwordLastChanged / 1000) > tokenPayload.iat) {

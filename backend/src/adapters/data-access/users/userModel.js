@@ -20,6 +20,7 @@ class User {
             },
             // TODO: REMOVE DEFAULT BEHAVIOUR OF GETTING A PASSWORD WHEN GETTING DATA
             password: {
+                select:false,
                 type:String,
                 required:true,
                 validate: {
@@ -29,13 +30,16 @@ class User {
                 }
             },
             passwordResetToken: {
-                type:String
+                type:String,
+                select:false,
             },
             passwordResetExpires: {
-                type:Number
+                type:Number,
+                select:false,
             },
             passwordLastChanged:{
-                type:Number
+                type:Number,
+                select:false
             }
 
         })
