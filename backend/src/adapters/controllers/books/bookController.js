@@ -3,7 +3,7 @@ const buildCreateBook = require("./createBook");
 const BuildGetSingleBook = require("./getSingleBook");
 const buildDeleteBook = require("./deleteBook");
 const buildUpdateBook = require("./updateBook");
-
+const buildGetMyBooks = require("./getMyBooks");
 
 const buildBookController = (db) => {
     return {
@@ -11,7 +11,8 @@ const buildBookController = (db) => {
         createBook:buildCreateBook(db),
         getSingleBook:BuildGetSingleBook(db),
         deleteBook: buildDeleteBook(db),
-        updateBook: buildUpdateBook(db)
+        updateBook: buildUpdateBook(db),
+        getMyBooks: buildGetMyBooks(db)
     }
 }
 

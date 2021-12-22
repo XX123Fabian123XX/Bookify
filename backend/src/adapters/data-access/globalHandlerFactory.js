@@ -12,7 +12,7 @@ const buildGlobalHandlerFactory = (Model) => {
     }
 
     const getAllEntities = async(query, fieldsToPopulate) => {
-
+        console.log(query);
         const firstQuery = Model.find({})
         const finalQuery = new apiFeatures(firstQuery, query).filter().sort().paginate().limitFields().query;
 

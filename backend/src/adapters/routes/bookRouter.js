@@ -14,6 +14,8 @@ const buildBookRouter = function(router, middleware, mongoose) {
     // user has to be authenticated
     router.use(middleware(protectMiddleware(mongoose), false))
 
+    router.get("/getMyBooks/test",middleware(protectMiddleware(mongoose), false), middleware(bookController.getMyBooks))
+
     router.post("/", uploadBookImages, middleware(bookController.createBook))
 
     // the user that has created the books is only allowed to patch and update them
