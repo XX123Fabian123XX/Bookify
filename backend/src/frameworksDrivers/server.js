@@ -12,9 +12,9 @@ const connectionString = process.env.MONGODB_CONNECTION_STRING
 mongoose.connect(connectionString).
   catch(error => console.log(error));
 
-const port = process.env.PORT;
+const port = process.env.YOUR_PORT || process.env.PORT || 8000;
 const app = buildApp(mongoose);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`App running on port ${port}`)
 })
