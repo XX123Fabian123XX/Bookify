@@ -14,9 +14,6 @@ const buildResetPassword = (mongooseObject) => {
 
         const token = req.body.token;
         const user = await userDatabaseConnection.getSingleUserByToken(token, "+passwordResetExpires");
-        console.log(user.passwordResetExpires);
-        console.log(new Date().getTime())
-        console.log(new Date().getTime() > user.passwordResetExpires)
         
         user.id = user._id;
 

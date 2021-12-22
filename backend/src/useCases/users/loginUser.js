@@ -3,7 +3,6 @@ const BaseError = require("../../utils/baseError");
 const buildLoginUser = (dbUserConnection) => {
     return async (userData) => {
         const currentUser = await dbUserConnection.getSingleUserByEmail(userData.email, "+password");
-        console.log(currentUser);
         const passwordIsValid = await validatePassword(currentUser.password, userData.password);
 
         if (!passwordIsValid) throw new BaseError("The password is invalid")

@@ -5,9 +5,7 @@ const buildGetMyBooks = (mongoose) => {
     const useCases = buildUseCases(dbConnection(mongoose));
     return async(req) => {
         const books = await useCases.getAllBooks({query:{userReference:req.user._id}});
-
-        console.log(books);
-
+        
         return {
             status:200,
             message:"success",
