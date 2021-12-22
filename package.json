@@ -1,7 +1,46 @@
 {
+  "name": "bookify_backend",
+  "version": "1.0.0",
+  "description": "Backend for the bookify app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "start": "nodemon ./backend/src/frameworksDrivers/server.js",
+    "manuellTest": "nodemon ./src/adapters/data-access/books/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XX123Fabian123XX/Bookify.git"
+  },
+  "author": "Fabian Winkelmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XX123Fabian123XX/Bookify/issues"
+  },
+  "homepage": "https://github.com/XX123Fabian123XX/Bookify#readme",
+  "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "email-validator": "^2.0.4",
+    "jest": "^27.4.4",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4"
+  },
   "dependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "cuid": "^2.1.8",
+    "date-format": "^3.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.5.1",
+    "faker": "^5.5.3",
     "helmet": "^4.6.0",
+    "mongoose": "^6.1.1",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "validate-date": "^2.0.0",
+    "xss": "^1.0.10",
     "xss-clean": "^0.1.1"
   }
 }
