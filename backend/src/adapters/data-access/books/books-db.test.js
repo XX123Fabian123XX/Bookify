@@ -21,6 +21,9 @@ describe("book database", () => {
         const bookInformation = books.map(getBookInformation)
         const inserts = await Promise.all(bookInformation.map(databaseFunctions.createBook))
         
+        delete user["password"];
+        delete user["passwordLastChanged"];
+
         inserts.forEach(insert => {insert.userReference = user});
 
         const found = await databaseFunctions.getAllBooks({query:{}});
@@ -35,6 +38,10 @@ describe("book database", () => {
         const bookInformation = getBookInformation(book);
         let insert = await databaseFunctions.createBook(bookInformation)
         let found = await databaseFunctions.getSingleBook(book.getId());
+
+        delete user["password"];
+        delete user["passwordLastChanged"]
+
         insert.userReference = user;
 
         expect(found).toEqual(insert);
@@ -45,6 +52,10 @@ describe("book database", () => {
         await databaseFunctions.createBook(getBookInformation(book));
         const newBook = await makeFakeBook({userReference: user._id});
         const updatedBook = await databaseFunctions.updateBook(book.getId(), getBookInformation(newBook));
+
+        delete user["password"];
+        delete user["passwordLastChanged"]
+
         updatedBook.userReference = user;
 
         const updateBookById = await databaseFunctions.getSingleBook(book.getId());

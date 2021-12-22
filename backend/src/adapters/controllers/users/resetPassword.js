@@ -13,7 +13,11 @@ const buildResetPassword = (mongooseObject) => {
         if (!req.body.passwordConfirm) throw new AppError("Please confirm your password", 400)
 
         const token = req.body.token;
-        const user = await userDatabaseConnection.getSingleUserByToken(token);
+        const user = await userDatabaseConnection.getSingleUserByToken(token, "+passwordResetExpires");
+        console.log(user.passwordResetExpires);
+        console.log(new Date().getTime())
+        console.log(new Date().getTime() > user.passwordResetExpires)
+        
         user.id = user._id;
 
         if (new Date().getTime() > user.passwordResetExpires) throw new AppError("The token has expired. Please get a new token", 400);

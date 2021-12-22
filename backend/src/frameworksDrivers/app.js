@@ -9,7 +9,7 @@ const rateLimit = require("express-rate-limit");
 const xss = require("xss-clean");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
-
+const path = require("path");
 
 dotenv.config();
 
@@ -18,7 +18,8 @@ const buildApp = (db) => {
     // frameworks and drivers
     const bookRouter = buildBookRouter(express.Router(), middleware, db);
     const userRouter = buildUserRouter(express.Router(), middleware, db);
-    
+
+
     const app = express();
 
     app.use(express.json({limit:'10kb'}));
@@ -39,6 +40,9 @@ const buildApp = (db) => {
     app.use(mongoSanitize());
 
     const apiPrefix = process.env.APIPREFIX
+
+    // static route
+    app.use("/api/v1/images",express.static(path.join(__dirname, "../../uploads")))
 
     // parser for json data
     app.use(express.json())

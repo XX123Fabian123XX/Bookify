@@ -60,9 +60,11 @@ describe("user database", () => {
 
         const createdUser = await userDatabaseConnection.createUser(fakeUser); 
 
-        const resetPasswordUser = await userDatabaseConnection.resetPassword(createdUser._id, "neuesPasswort");
+         await userDatabaseConnection.resetPassword(createdUser._id, "neuesPasswort");
+        
+        const user = await userDatabaseConnection.getSingleUser(createdUser._id, "+password")
 
-        expect(resetPasswordUser.password).toEqual("neuesPasswort");
+        expect(user.password).toEqual("neuesPasswort");
 
 
     })

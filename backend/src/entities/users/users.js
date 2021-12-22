@@ -46,7 +46,7 @@ exports.buildMakeUser = function(isEmailValid, isPasswordValid, encryptPassword,
         }
 
         if (!isPasswordValid(password)) {
-            throw new BaseError("The password is not valid")
+            throw new BaseError("The password is not valid. It needs to have one uppercase and lowercase letter, one number, one special character. It needs to be 8 characters long")
         }
 
         if (!passwordConfirm) {

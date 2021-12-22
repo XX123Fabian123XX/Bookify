@@ -25,6 +25,10 @@ describe("get all books", () => {
 
         const allBooks = await useCases.getAllBooks({query:{}});
         allBooks.forEach(book => {book.id = book._id})
+
+        delete user["password"];
+        delete user["passwordLastChanged"]
+
         fakeBookInformation.forEach(book => {
             if (book.userReference.toString() == user._id) book.userReference = user;
         })

@@ -20,8 +20,6 @@ const buildGlobalHandlerFactory = (Model) => {
     }
 
     const getSingleEntity = async(query, errorMessageNotFound, fieldsToPopulate, selectExtraFields) => {
-        console.log("extra fields " + selectExtraFields);
-        console.log("fields to populate" + fieldsToPopulate)
         const singleEntity = await Model.findOne(query).populate(fieldsToPopulate).select(selectExtraFields)
 
         if (!singleEntity) throw new AppError(errorMessageNotFound, 404)
